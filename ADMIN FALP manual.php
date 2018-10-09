@@ -152,13 +152,13 @@ $success = null;
                $birthdate = $bYear . "-" . $bMonth . "-" . $bDay;
                $datehired = $hYear . "-" . $hMonth . "-" . $hDay;
 
-               if(!empty($_POST['bunum']) && !empty($_POST['baddress'])){
+               if(!empty($_POST['bunum']) && !empty($_POST['baddress'])){ //if the business number is not empty
                      $bunum = $_POST['bunum'];
                      $baddress = $_POST['baddress'];
 
 
-                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME,CIV_STATUS, MIDDLENAME,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, BUSINESS_NUM, HOME_ADDRESS, BUSINESS_ADDRESS, 
-                          DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED) VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat},'{$mName}',{$sex},'{$birthdate}','{$datehired}',{$honum},{$bunum},'{$haddress}','{$baddress}',{$dept},1,2,NOW())"; 
+                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME,CIV_STATUS, MIDDLENAME,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, BUSINESS_NUM, HOME_ADDRESS, BUSINESS_ADDRESS, DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED) 
+                                          VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat},'{$mName}',{$sex},'{$birthdate}','{$datehired}',{$honum},{$bunum},'{$haddress}','{$baddress}',{$dept},1,2,NOW())";
 
                       $result = mysqli_query($dbc,$query);
 
@@ -169,7 +169,7 @@ $success = null;
 
                }
 
-               else if(!empty($_POST['bunum']) ){
+               else if(!empty($_POST['bunum']) ){ //if the bnum isnt empty
                     $bunum = $_POST['bunum'];
 
                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME,MIDDLENAME,CIV_STATUS,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, BUSINESS_NUM, HOME_ADDRESS, 
@@ -185,7 +185,7 @@ $success = null;
 
                }
 
-               else if(!empty($_POST['baddress'])){
+               else if(!empty($_POST['baddress'])){ // if the Business address isnt empty
                     $baddress = $_POST['baddress'];
 
                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME, CIV_STATUS, MIDDLENAME, SEX, BIRTHDATE, DATE_HIRED, HOME_NUM, HOME_ADDRESS, BUSINESS_ADDRESS, 
@@ -203,7 +203,7 @@ $success = null;
 
                }
 
-               else {
+               else { //when Business address and Business Number is empty
 
                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME, CIV_STATUS,  MIDDLENAME,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, HOME_ADDRESS, DEPT_ID, USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED) 
                         VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat}, '{$mName}','{$sex}','{$birthdate}','{$datehired}','{$honum}','{$haddress}',{$dept},1,2,NOW())"; 
@@ -216,8 +216,9 @@ $success = null;
                     $result2 = mysqli_query($dbc, $query2);
 
                 }
+
                 $query = "INSERT INTO loans(MEMBER_ID,LOAN_DETAIL_ID,AMOUNT,INTEREST,PAYMENT_TERMS,PAYABLE,PER_PAYMENT,APP_STATUS,LOAN_STATUS,DATE_APPLIED,PICKUP_STATUS)
-                values({$_POST['idNum']},1,{$_POST['amount']},5,{$_POST['terms']},{$_POST['amount']}+{$_POST['amount']}*5/100,({$_POST['amount']}+{$_POST['amount']}*5/100)/{$_POST['terms']}/2,2,2,DATE(now()),1);";
+                                    values({$_POST['idNum']},1,{$_POST['amount']},5,{$_POST['terms']},{$_POST['amount']}+{$_POST['amount']}*5/100,({$_POST['amount']}+{$_POST['amount']}*5/100)/{$_POST['terms']}/2,2,2,DATE(now()),1);";
 
                 mysqli_query($dbc,$query);
                
@@ -820,7 +821,7 @@ $success = null;
 
                             </div>
 
-                            <input class="btn btn-success" type="submit" name="submit" value="Sumbit"><p>
+                            <input class="btn btn-success" type="submit" name="submit" value="Sumbit"></p>
 
                        </form>
 
