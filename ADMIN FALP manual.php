@@ -70,6 +70,7 @@ $success = null;
             $hYear = $_POST['hYear'];
             $hMonth = $_POST['hMonth'];
             $hDay = $_POST['hDay'];
+           
             $dept = NULL;
 
          
@@ -78,7 +79,17 @@ $success = null;
             // hadresses
             $haddress = NULL;
             $badress = NULL;
+            // Date Approved
+            $aYear = $_POST['aYear'];
+            $aMonth = $_POST['aMonth'];
+            $aDay = $_POST['aDay'];
+            // Date applied
+            $appYear = $_POST['appYear'];
+            $appMonth = $_POST['appMonth'];
+            $appDay = $_POST['appDay'];
 
+            // Employee ID
+            $emp_ID = $_POST['Emp_ID'];
            
 
            
@@ -151,14 +162,15 @@ $success = null;
                $honum = $_POST['honum'];
                $birthdate = $bYear . "-" . $bMonth . "-" . $bDay;
                $datehired = $hYear . "-" . $hMonth . "-" . $hDay;
-
+               $dateapp = $aYear . "-" . $aMonth . "-" . $aDay;
+               $dateappl = $appYear . "-" . $appMonth . "-" . $appDay;
                if(!empty($_POST['bunum']) && !empty($_POST['baddress'])){ //if the business number is not empty
                      $bunum = $_POST['bunum'];
                      $baddress = $_POST['baddress'];
 
 
-                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME,CIV_STATUS, MIDDLENAME,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, BUSINESS_NUM, HOME_ADDRESS, BUSINESS_ADDRESS, DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED) 
-                                          VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat},'{$mName}',{$sex},'{$birthdate}','{$datehired}',{$honum},{$bunum},'{$haddress}','{$baddress}',{$dept},1,2,NOW())";
+                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME,CIV_STATUS, MIDDLENAME,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, BUSINESS_NUM, HOME_ADDRESS, BUSINESS_ADDRESS, DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED,DATE_APPROVED,EMP_ID_APPROVE) 
+                                          VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat},'{$mName}',{$sex},'{$birthdate}','{$datehired}',{$honum},{$bunum},'{$haddress}','{$baddress}',{$dept},1,2,'{$dateappl}','{$dateapp}','{$emp_ID}')";
 
                       $result = mysqli_query($dbc,$query);
 
@@ -173,7 +185,7 @@ $success = null;
                     $bunum = $_POST['bunum'];
 
                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME,MIDDLENAME,CIV_STATUS,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, BUSINESS_NUM, HOME_ADDRESS, 
-                          DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED) VALUES ('{$idNum}','{$fName}','{$lName}','{$mName}',{$civStat},{$sex},'{$birthdate}','{$datehired}',{$honum},{$bunum},'{$haddress}',{$dept},1,2,NOW())"; 
+                          DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED,DATE_APPROVED,EMP_ID_APPROVE) VALUES ('{$idNum}','{$fName}','{$lName}','{$mName}',{$civStat},{$sex},'{$birthdate}','{$datehired}',{$honum},{$bunum},'{$haddress}',{$dept},1,2,'{$dateappl}','{$dateapp}','{$emp_ID}')"; 
 
 
                       $result = mysqli_query($dbc,$query); 
@@ -189,7 +201,7 @@ $success = null;
                     $baddress = $_POST['baddress'];
 
                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME, CIV_STATUS, MIDDLENAME, SEX, BIRTHDATE, DATE_HIRED, HOME_NUM, HOME_ADDRESS, BUSINESS_ADDRESS, 
-                          DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED) VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat}, '{$mName}',{$sex},'{$birthdate}','{$datehired}',{$honum},'{$haddress}','{$baddress}',{$dept},1,2,NOW())"; 
+                          DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED,DATE_APPROVED,EMP_ID_APPROVE) VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat}, '{$mName}',{$sex},'{$birthdate}','{$datehired}',{$honum},'{$haddress}','{$baddress}',{$dept},1,2,'{$dateappl}','{$dateapp}','{$emp_ID}')"; 
 
 
                      $result = mysqli_query($dbc,$query); 
@@ -205,8 +217,8 @@ $success = null;
 
                else { //when Business address and Business Number is empty
 
-                    $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME, CIV_STATUS,  MIDDLENAME,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, HOME_ADDRESS, DEPT_ID, USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED) 
-                        VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat}, '{$mName}','{$sex}','{$birthdate}','{$datehired}','{$honum}','{$haddress}',{$dept},1,2,NOW())"; 
+                    $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME, CIV_STATUS,  MIDDLENAME,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, HOME_ADDRESS, DEPT_ID, USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED,DATE_APPROVED,EMP_ID_APPROVE) 
+                        VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat}, '{$mName}','{$sex}','{$birthdate}','{$datehired}','{$honum}','{$haddress}',{$dept},1,2,'{$dateappl}','{$dateapp}','{$emp_ID}')"; 
 
                     $result = mysqli_query($dbc,$query); 
 
@@ -216,13 +228,17 @@ $success = null;
                     $result2 = mysqli_query($dbc, $query2);
 
                 }
-
+                if(!empty($_POST['amount'])){
                 $query = "INSERT INTO loans(MEMBER_ID,LOAN_DETAIL_ID,AMOUNT,INTEREST,PAYMENT_TERMS,PAYABLE,PER_PAYMENT,APP_STATUS,LOAN_STATUS,DATE_APPLIED,PICKUP_STATUS)
                                     values({$_POST['idNum']},1,{$_POST['amount']},5,{$_POST['terms']},{$_POST['amount']}+{$_POST['amount']}*5/100,({$_POST['amount']}+{$_POST['amount']}*5/100)/{$_POST['terms']}/2,2,2,DATE(now()),1);";
 
-                mysqli_query($dbc,$query);
-               
-               $success = "yes";
+               mysqli_query($dbc,$query1);}
+               $query = " SELECT * FROM MEMBER WHERE MEMBER_ID = {$_POST['idNum']}";
+
+               $result = mysqli_query($dbc,$query);
+               $row = mysqli_fetch_assoc($result);
+               if(!empty($row)){
+               $success = "yes";}
 
             }
 
@@ -620,6 +636,117 @@ $success = null;
                                         </div>
 
                                     </div>
+                                    <div class="row">
+
+                                        <div class="col-lg-12">
+
+                                                <p id="dbirthlabel"><b>Member since:</b><big class="req"> *</big></p>
+
+                                                <label class="memfieldlabel">Year</label>
+                                                <select class="form-control datedropdown"  name =  "aYear">
+
+                                                    <?php for($y = 2017; $y >= 1900; $y--) { ?>
+
+                                                        <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+
+                                                <label class="memfieldlabel">Month</label>
+                                                <select class="form-control datedropdown" name =  "aMonth">
+
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                    <option>7</option>
+                                                    <option>8</option>
+                                                    <option>9</option>
+                                                    <option>10</option>
+                                                    <option>11</option>
+                                                    <option>12</option>
+
+                                                </select>
+
+                                                <label class="memfieldlabel">Day</label>
+                                                <select class="form-control datedropdown"  name =  "aDay">
+
+                                                    <?php for($x = 1; $x <= 31; $x++) { ?>
+
+                                                        <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-lg-12">
+
+                                                <p id="dbirthlabel"><b>Date Applied:</b><big class="req"> *</big></p>
+
+                                                <label class="memfieldlabel">Year</label>
+                                                <select class="form-control datedropdown"  name =  "appYear">
+
+                                                    <?php for($y = 2017; $y >= 1900; $y--) { ?>
+
+                                                        <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+
+                                                <label class="memfieldlabel">Month</label>
+                                                <select class="form-control datedropdown" name =  "appMonth">
+
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                    <option>7</option>
+                                                    <option>8</option>
+                                                    <option>9</option>
+                                                    <option>10</option>
+                                                    <option>11</option>
+                                                    <option>12</option>
+
+                                                </select>
+
+                                                <label class="memfieldlabel">Day</label>
+                                                <select class="form-control datedropdown"  name =  "appDay">
+
+                                                    <?php for($x = 1; $x <= 31; $x++) { ?>
+
+                                                        <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-lg-12">
+
+                                                <span class="labelspan"><b>ID of Employee Hired</b><big class="req"> *</big></span>
+                                                <input type="text" minlength = "8" maxlength="8" class="form-control memname" placeholder="e.g. 09000000" name="Emp_ID">
+                                                </label>
+
+                                        </div>
+
+                                    </div>
 
                                 </div>
 
@@ -847,6 +974,11 @@ $success = null;
         echo "<script type='text/javascript'>alert('Success!');</script>";
         
     }
+    else {
+        
+        echo "<script type='text/javascript'>alert('Failed to Add!');</script>";
+        
+    }
 
     ?>
     <!-- Bootstrap Core JavaScript -->
@@ -872,10 +1004,6 @@ $success = null;
             var amount = parseFloat(document.getElementById("amount").value);
             var terms = parseFloat(document.getElementById("terms").value);
            
-            if(isNaN(amount)||isNaN(terms)){
-                alert("Invalid Input in FALP Account Information");
-                return false;
-            }
             return true;
             
         }
