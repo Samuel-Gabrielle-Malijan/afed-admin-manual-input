@@ -9,17 +9,25 @@ header("Location: http://".$_SERVER['HTTP_HOST']. dirname($_SERVER['PHP_SELF']).
 
 }
 if(isset($_POST['action'])){
-    if($_POST['action']=="Reactivate Account"){
-        $query1 = "UPDATE member
-                  set USER_STATUS = 1
-                  where MEMBER_ID = {$_POST['details']}  ";
+    if($_POST['action']=="Add Health Aid"){
+        $_SESSION['memberID'] = $_POST['details'];
+        header("Location: http://".$_SERVER['HTTP_HOST']. dirname($_SERVER['PHP_SELF'])."/ADMIN MEMBERS HA application.php");
     }
-    else if($_POST['action']=="Deactivate Account"){
-        $query1 = "UPDATE member
-                  set USER_STATUS = 4
-                  where MEMBER_ID = {$_POST['details']}  ";
+    else{
+        if($_POST['action']=="Reactivate Account"){
+            $query1 = "UPDATE member
+                      set USER_STATUS = 1
+                      where MEMBER_ID = {$_POST['details']}  ";
+        }
+        else if($_POST['action']=="Deactivate Account"){
+            $query1 = "UPDATE member
+                      set USER_STATUS = 4
+                      where MEMBER_ID = {$_POST['details']}  ";
+                      
     }
-    mysqli_query($dbc,$query1);
+     mysqli_query($dbc,$query1);
+   
+}
 
 }
 $query = "SELECT * FROM member m join ref_department d
@@ -412,6 +420,7 @@ $ans = mysqli_fetch_assoc($result);
                                             
 
                                             } else{
+                                            echo '<input type="submit" class="btn btn-success" name="action" value="Add Health Aid">';
                                             echo '<input type="submit" class="btn btn-danger" name="action" value="Deactivate Account">';
                                              }?>
                                         </div>

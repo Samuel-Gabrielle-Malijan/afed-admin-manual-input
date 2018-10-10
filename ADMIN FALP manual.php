@@ -89,7 +89,7 @@ $success = null;
             $appDay = $_POST['appDay'];
 
             // Employee ID
-            $emp_ID = $_POST['Emp_ID'];
+            $emp_ID = $_POST['emp_ID'];
            
 
            
@@ -169,10 +169,10 @@ $success = null;
                      $baddress = $_POST['baddress'];
 
 
-                     $query = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME,CIV_STATUS, MIDDLENAME,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, BUSINESS_NUM, HOME_ADDRESS, BUSINESS_ADDRESS, DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED,DATE_APPROVED,EMP_ID_APPROVE) 
+                     $query1 = "INSERT INTO MEMBER (MEMBER_ID, FIRSTNAME, LASTNAME,CIV_STATUS, MIDDLENAME,SEX, BIRTHDATE ,DATE_HIRED, HOME_NUM, BUSINESS_NUM, HOME_ADDRESS, BUSINESS_ADDRESS, DEPT_ID,USER_STATUS,MEMBERSHIP_STATUS,DATE_APPLIED,DATE_APPROVED,EMP_ID_APPROVE) 
                                           VALUES ('{$idNum}','{$fName}','{$lName}',{$civStat},'{$mName}',{$sex},'{$birthdate}','{$datehired}',{$honum},{$bunum},'{$haddress}','{$baddress}',{$dept},1,2,'{$dateappl}','{$dateapp}','{$emp_ID}')";
 
-                      $result = mysqli_query($dbc,$query);
+                      $result = mysqli_query($dbc,$query1);
 
                       $pw = "password";
 
@@ -333,7 +333,7 @@ $success = null;
 
     <li id="top">
 
-        <a href="ADMIN FALP manual.php"><i class="fa fa-gears" aria-hidden="true"></i> Add Member & FALP Account</a>
+        <a href="ADMIN FALP manual.php"><i class="fa fa-gears" aria-hidden="true"></i> Add Member</a>
 
     </li>
 
@@ -575,16 +575,7 @@ $success = null;
 
                                                 <p id="dbirthlabel"><b>Date of Birth</b><big class="req"> *</big></p>
 
-                                                <label class="memfieldlabel">Year</label>
-                                                <select class="form-control datedropdown"  name =  "bYear">
-
-                                                    <?php for($y = 2017; $y >= 1900; $y--) { ?>
-
-                                                        <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
-
-                                                    <?php } ?>
-
-                                                </select>
+                                                
 
                                                 <label class="memfieldlabel">Month</label>
                                                 <select class="form-control datedropdown" name =  "bMonth">
@@ -610,6 +601,16 @@ $success = null;
                                                     <?php for($x = 1; $x <= 31; $x++) { ?>
 
                                                         <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+                                                <label class="memfieldlabel">Year</label>
+                                                <select class="form-control datedropdown"  name =  "bYear">
+
+                                                    <?php for($y = 2017; $y >= 1900; $y--) { ?>
+
+                                                        <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
 
                                                     <?php } ?>
 
@@ -642,17 +643,7 @@ $success = null;
 
                                                 <p id="dbirthlabel"><b>Member since:</b><big class="req"> *</big></p>
 
-                                                <label class="memfieldlabel">Year</label>
-                                                <select class="form-control datedropdown"  name =  "aYear">
-
-                                                    <?php for($y = 2017; $y >= 1900; $y--) { ?>
-
-                                                        <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
-
-                                                    <?php } ?>
-
-                                                </select>
-
+                                               
                                                 <label class="memfieldlabel">Month</label>
                                                 <select class="form-control datedropdown" name =  "aMonth">
 
@@ -681,6 +672,17 @@ $success = null;
                                                     <?php } ?>
 
                                                 </select>
+                                                 <label class="memfieldlabel">Year</label>
+                                                <select class="form-control datedropdown"  name =  "aYear">
+
+                                                    <?php for($y = 2017; $y >= 1900; $y--) { ?>
+
+                                                        <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+
 
 
                                         </div>
@@ -692,16 +694,7 @@ $success = null;
 
                                                 <p id="dbirthlabel"><b>Date Applied:</b><big class="req"> *</big></p>
 
-                                                <label class="memfieldlabel">Year</label>
-                                                <select class="form-control datedropdown"  name =  "appYear">
-
-                                                    <?php for($y = 2017; $y >= 1900; $y--) { ?>
-
-                                                        <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
-
-                                                    <?php } ?>
-
-                                                </select>
+                                               
 
                                                 <label class="memfieldlabel">Month</label>
                                                 <select class="form-control datedropdown" name =  "appMonth">
@@ -731,6 +724,16 @@ $success = null;
                                                     <?php } ?>
 
                                                 </select>
+                                                 <label class="memfieldlabel">Year</label>
+                                                <select class="form-control datedropdown"  name =  "appYear">
+
+                                                    <?php for($y = 2017; $y >= 1900; $y--) { ?>
+
+                                                        <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
 
 
                                         </div>
@@ -741,7 +744,7 @@ $success = null;
                                         <div class="col-lg-12">
 
                                                 <span class="labelspan"><b>ID of Employee Hired</b><big class="req"> *</big></span>
-                                                <input type="text" minlength = "8" maxlength="8" class="form-control memname" placeholder="e.g. 09000000" name="Emp_ID">
+                                                <input type="text" minlength = "8" maxlength="8" class="form-control memname" placeholder="e.g. 09000000" name="emp_ID">
                                                 </label>
 
                                         </div>
@@ -906,7 +909,7 @@ $success = null;
 
                                 <div class="panel-heading">
 
-                                    <b>FALP Account Information</b>
+                                    <b>FALP Account Information<?php echo $query1?></b>
                                 </div>
 
                                 <div class="panel-body">
@@ -947,6 +950,119 @@ $success = null;
                                 </div>
 
                             </div>
+                            <div class="panel panel-green">
+
+                                <div class="panel-heading">
+
+                                    <b>Lifetime Information</b>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <div class="row">
+
+                                        <div class="col-lg-4">
+
+                                            <label class="memfieldlabel">Primary Beneficiary</label><big class="req"> *</big>
+                                            <input type="text" class="form-control" name="primary" id="primary">
+
+                                        </div>
+
+                                    </div>
+
+                                    <p>
+
+                                    <div class="row">
+
+                                        <div class="col-lg-4">
+                                            
+                                            <label class="memfieldlabel">Secondary Beneficiary</label><big class="req"> *</big>
+                                            <input type="text" class="form-control"  name="secondary"  id="secondary">
+                                           
+
+                                            
+                                        </div>
+
+                                    </div>
+                                     <div class="row">
+
+                                        <div class="col-lg-4">
+
+                                            <label class="memfieldlabel">Organization</label><big class="req"> *</big>
+                                            <input type="text" class="form-control"  name="org" id="org">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-lg-12">
+
+                                                <p id="dbirthlabel"><b>Date Approved</b></p>
+
+
+                                                <label class="memfieldlabel">Year</label>
+                                                <select class="form-control datedropdown" name = "lYear">
+
+                                                    <?php for($y = 2017; $y >= 1900; $y--) { ?>
+
+                                                        <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+
+
+
+
+
+                                                <label class="memfieldlabel">Month</label>
+                                                <select class="form-control datedropdown" name = "lMonth">
+
+                                                
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                    <option>7</option>
+                                                    <option>8</option>
+                                                    <option>9</option>
+                                                    <option>10</option>
+                                                    <option>11</option>
+                                                    <option>12</option>
+
+                                                </select>
+
+                                                <label class="memfieldlabel">Day</label>
+                                                <select class="form-control datedropdown" name = "lDay">
+
+                                                    <?php for($x = 1; $x <= 31; $x++) { ?>
+
+                                                        <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+
+                                                
+
+                                        </div>
+                                        <div class="col-lg-4">
+											 <span class="labelspan"><b>ID of Employee Hired</b><big class="req"> *</big></span>
+                                                <input type="text" minlength = "8" maxlength="8" class="form-control memname" placeholder="e.g. 09000000" name="Emp_ID">
+                                                </label>
+
+
+                                    </div>
+                                    </div>
+                                    
+
+                                </div>
+
+                            </div>
+                            
 
                             <input class="btn btn-success" type="submit" name="submit" value="Sumbit"></p>
 
