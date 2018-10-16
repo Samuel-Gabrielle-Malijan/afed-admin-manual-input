@@ -570,7 +570,7 @@ $success = null;
                     <div class="col-lg-12">
 
                         <h1 class="page-header">
-                            Add Member and FALP Account
+                            Add Member
                         </h1>
                     
                     </div>
@@ -964,7 +964,7 @@ $success = null;
 
                                         <div class="col-lg-12">
 
-                                            <label class="memfieldlabel">Business Phone Number</label><big class="req"> *</big>
+                                            <label class="memfieldlabel">Business Phone Number</label>
                                             <input type="number" class="form-control memfields number" placeholder="Home Phone Number" name="bunum" <?php if(isset($_POST['bunum'])){
                                                 	echo "value = '{$_POST['bunum']}'";
                                                 } ?>>
@@ -990,7 +990,7 @@ $success = null;
 
                                         <div class="col-lg-12">
 
-                                            <label class="memfieldlabel">Business Address <?php echo $query4;?></label>
+                                            <label class="memfieldlabel">Business Address</label>
                                             <textarea  class="form-control memfields address" placeholder="Address" name="baddress" rows="2" ><?php if(isset($_POST['baddress'])){
                                                 	echo $_POST['baddress'];
                                                 } ?></textarea> 

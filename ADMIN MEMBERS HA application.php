@@ -165,7 +165,7 @@ $_SESSION['HA_RecordID'] == 0;
             }
         }
 
-        if (!isset($_POST['hasSibling'])) {
+        if (isset($_POST['hasSibling'])) {
 
             foreach ($_POST['siblingfirst'] as $siblingfirst) {
 
@@ -314,7 +314,7 @@ $_SESSION['HA_RecordID'] == 0;
 
     if ($rowCiv['CIV_STATUS'] != 1) {
 
-        if (!isset($_POST['hasChild'])) {
+        if (isset($_POST['hasChild'])) {
 			
 			foreach ($_POST['childstatus'] as $childstatus) {
 
@@ -890,7 +890,7 @@ $_SESSION['HA_RecordID'] == 0;
                 <div class="row">
 
                     <div class="col-lg-12">
-
+                        
                         <h3 class="healthfieldlabel">Father's Information</h3>
 
                         <label>
@@ -1423,7 +1423,7 @@ $_SESSION['HA_RecordID'] == 0;
 
                         <p>
 
-                        <input type="checkbox" name="hasChild" value="1"> I don't have children<p>
+                        <input type="checkbox" name="hasChild" value="1">Check if member has children<p>
 
                     </div>
 
@@ -1601,7 +1601,8 @@ $_SESSION['HA_RecordID'] == 0;
                     <div class="col-lg-12">
 
                         <a href="#" class="btn btn-default addchild" role="button">Add Field</a>
-                        <a class="btn btn-default removechild" role="button">Remove Previously Added Fields</a>
+                        
+                        
 
                     </div>
 
@@ -1627,7 +1628,7 @@ $_SESSION['HA_RecordID'] == 0;
 
                         <p>
 
-                        <input type="checkbox" name="hasSibling" value="1"> I don't have siblings<p>
+                        <input type="checkbox" name="hasSibling" value="1"> Check if member has siblings<p>
 
                     </div>
 
@@ -1805,8 +1806,7 @@ $_SESSION['HA_RecordID'] == 0;
                     <div class="col-lg-12">
 
                         <a class="btn btn-default addsibling" role="button">Add Field</a>
-                        <a class="btn btn-default removesibling" role="button">Remove Previously Added Fields</a>
-
+                        
                     </div>
 
                </div>
@@ -1818,6 +1818,7 @@ $_SESSION['HA_RecordID'] == 0;
                         <hr>
 
                         <input type="submit" name="submit" class="btn btn-success" role="button" value="Apply"></a>
+
                         <p> &nbsp;
 
                     </div>
@@ -1842,77 +1843,70 @@ $_SESSION['HA_RecordID'] == 0;
     <script src="js/bootstrap.min.js"></script>
 
             <script>
-
-            $(document).ready(function(){
-
                 var iS = 1;
                 var iC = 1;
-                var sibfields = $('.siblingfields:first');
-                var childfields = $('.childfields:first');
+                $(document).ready(function(){
 
-                /* adding child and sibling fields */
+                    
+                    var sibfields = $('.siblingfields:first');
+                    var childfields = $('.childfields:first');
 
-                $('body').on('click', '.addsibling', function() {
+                    /* adding child and sibling fields */
 
-                    iS++;
+                    $('body').on('click', '.addsibling', function() {
 
-                    var section = sibfields.clone().find(':input').each(function() {
+                        iS++;
 
-                        var newId = this.id + iS;
+                        var section = sibfields.clone().find(':input').each(function() {
 
-                        this.id = newId;
+                            var newId =  + iS;
 
-                    }).end().appendTo('#siblingform');
+                            this.id = newId;
 
-                    return false;
+                        }).end().appendTo('#siblingform');
 
-                });
-
-                $('body').on('click', '.addchild', function() {
-
-                    iC++;
-
-                    var section2 = childfields.clone().find(':input').each(function() {
-
-                        var newId2 = this.id + iC;
-
-                        this.id = newId2;
-
-                    }).end().appendTo('#childform');
-
-                    return false;
-
-                });
-
-                /* removing child and sibling fields */
-
-                $('#siblingform').on('click', '.removesibling', function() {
-
-                    $this.parent().fadeOut(300, function() {
-
-                        $(this).parent().parent().empty();
                         return false;
 
                     });
 
-                    return false;
+                    $('body').on('click', '.addchild', function() {
 
-                });
+                        iC++;
 
-                $('#childform').on('click', '.removechild', function() {
+                        var section2 = childfields.clone().find(':input').each(function() {
 
-                    $this.parent().fadeOut(300, function() {
+                            var newId2 = this.id + iC;
 
-                        $(this).parent().parent().empty();
+                            this.id = newId2;
+
+                        }).end().appendTo('#childform');
+
                         return false;
 
                     });
 
-                    return false;
+                    /* removing child and sibling fields */
+
+                    $('#siblingform').on('click', '.removesibling', function() {
+                        thi
+                        document.getElementById("childform"+iS).remove();
+
+                    });
+
+                    $('#childform').on('click', '.removechild', function() {
+
+                        $this.parent().fadeOut(300, function() {
+
+                            $(this).parent().parent().empty();
+                            return false;
+
+                        });
+
+                        return false;
+
+                    });
 
                 });
-
-            });
 
         </script>
 
