@@ -581,11 +581,12 @@ $success = null;
                     <div class="col-lg-12">
 
                         <p><i>Fields with <big class="req">*</big> are required to be filled out and those without are optional.</i></p>
-
+                        <a href="ADMIN FALP manual.php#falpInfo">Jump to FALP</a> <p>
+						<a href="ADMIN FALP manual.php#lifetimeInfo">Jump to Lifetime</a>
                         <!--Insert success page--> 
                         <form method="POST" action="ADMIN FALP manual.php" id="addAccount" onSubmit="return checkform()">
 
-                            <div class="panel panel-green">
+                            <div class="panel panel-green" name = "personalInfo">
 
                                 <div class="panel-heading">
 
@@ -632,7 +633,7 @@ $success = null;
                                                 <input type="text" class="form-control memfields" placeholder="Middle Name" name="mName" <?php if(isset($_POST['mName'])){
                                                 	echo "value = '{$_POST['mName']}'";
                                                 } ?>>
-
+                                                
                                         </div>
 
                                     </div>
@@ -845,7 +846,7 @@ $success = null;
 
                             </div>
 
-                            <div class="panel panel-green">
+                            <div class="panel panel-green" name = "emplymentInfo">
 
                                 <div class="panel-heading">
 
@@ -986,7 +987,7 @@ $success = null;
 
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row" id = "falpInfo">
 
                                         <div class="col-lg-12">
 
@@ -1003,7 +1004,7 @@ $success = null;
 
                             </div>
 
-                            <div class="panel panel-green">
+                            <div class="panel panel-green" >
 
                                 <div class="panel-heading">
 
@@ -1208,7 +1209,7 @@ $success = null;
 
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" id = "falpInfo">
 	                                    <div class="col-lg-4">
 												 <span class="labelspan"><b>ID of Employee Hired</b></span><big class="req">*</big>
 	                                                <input type="text" minlength = "8" maxlength="8" class="form-control memname" placeholder="e.g. 09000000" name="fEmp_ID" <?php if(isset($_POST['fEmp_ID'])){
@@ -1223,7 +1224,7 @@ $success = null;
                                 </div>
 
                             </div>
-                            <div class="panel panel-green">
+                            <div class="panel panel-green" id = "lifetimeInfo">
 
                                 <div class="panel-heading">
 
