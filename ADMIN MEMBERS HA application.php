@@ -3,9 +3,10 @@
 <?php
 session_start();
 require_once("mysql_connect_FA.php");
-if ($_SESSION['usertype'] == 1) {
+if ($_SESSION['usertype'] == 1||!isset($_SESSION['usertype'])) {
 
 header("Location: http://".$_SERVER['HTTP_HOST']. dirname($_SERVER['PHP_SELF'])."/index.php");
+
 }
 $_SESSION['HA_RecordID'] == 0;
 	
@@ -709,7 +710,7 @@ $_SESSION['HA_RecordID'] == 0;
 
     <li id="top">
 
-        <a href="ADMIN FALP manual.php"><i class="fa fa-gears" aria-hidden="true"></i> Add Member & FALP Account</a>
+        <a href="ADMIN FALP manual.php"><i class="fa fa-gears" aria-hidden="true"></i> Add Member</a>
 
     </li>
 
