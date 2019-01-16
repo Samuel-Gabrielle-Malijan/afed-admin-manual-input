@@ -1,3 +1,4 @@
+<?php session_start();?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             
             <div class="navbar-header"> <!-- Logo -->
@@ -49,7 +50,7 @@
 
                 <li class="dropdown sideicons">
 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Jo, Melton <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['fullName'];?> <b class="caret"></b></a>
 
                     <ul class="dropdown-menu">
 

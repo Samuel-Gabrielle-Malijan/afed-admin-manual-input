@@ -74,7 +74,7 @@
                 $resultMem = mysqli_query($dbc, $queryMem);
                 $rowMem = mysqli_fetch_array($resultMem);
 
-                $queryEmp = "SELECT EMP_ID, PASSWORD, ACC_STATUS, FIRST_CHANGE_PW FROM EMPLOYEE WHERE EMP_ID = '{$idnum}' AND PASSWORD = PASSWORD('{$password}')";
+                $queryEmp = "SELECT EMP_ID,FIRSTNAME,LASTNAME, PASS_WORD, ACC_STATUS, FIRST_CHANGE_PW FROM EMPLOYEE WHERE EMP_ID = '{$idnum}' AND PASS_WORD = PASSWORD('{$password}')";
                 $resultEmp = mysqli_query($dbc, $queryEmp);
                 $rowEmp = mysqli_fetch_array($resultEmp);
 
@@ -110,6 +110,7 @@
 
                     header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/ADMIN FALP manual.php");
                     $_SESSION['usertype'] = "3";
+                    $_SESSION['fullName'] = "{$rowEmp['FIRSTNAME']} {$rowEmp['LASTNAME']}";
 
                 }
 
