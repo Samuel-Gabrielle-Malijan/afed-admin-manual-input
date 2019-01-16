@@ -20,7 +20,7 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" type="text/css" href="buttonsstyle.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,6 +32,11 @@
 
      <script> $(function(){
      	$('#load').load('navBar.php');
+     });
+    </script>
+
+    <script> $(function(){
+     	$('#scrollToTopScript').load('scrollToTop.html');
      });
     </script>
 </head>
@@ -332,7 +337,7 @@ $success = null;
 ?>
 
 <body>
-	
+	<button onclick="topFunction()" id="scrollToTop" title="Go to top">Scroll to Top</button>
     <div id="wrapper">
     		<div id ="load">
     		</div>
@@ -348,6 +353,7 @@ $success = null;
 
                         <h1 class="page-header">
                             Add Member
+
                         </h1>
                     
                     </div>
@@ -361,6 +367,7 @@ $success = null;
                         <a href="ADMIN FALP manual.php#falpInfo">Jump to FALP</a> <p>
 						<a href="ADMIN FALP manual.php#lifetimeInfo">Jump to Lifetime</a>
                         <!--Insert success page--> 
+                        
                         <form method="POST" action="ADMIN FALP manual.php" id="addAccount" onSubmit="return checkform()">
 
                             <div class="panel panel-green" name = "personalInfo">
@@ -619,7 +626,7 @@ $success = null;
 
                                                  <label>
                                                 <span class="labelspan">Campus Registered<big class="req"> *</big></span>
-                                                <input type="text" class="form-control memname" placeholder="First Name" name="fName"  <?php if(isset($_POST['campus'])){
+                                                <input type="text" class="form-control memname" placeholder="First Name" name="campus"  <?php if(isset($_POST['campus'])){
                                                 	echo "value = '{$_POST['campus']}'";
                                                 } ?>>
                                                 </label>
@@ -1202,7 +1209,7 @@ $success = null;
                             </div>
                             
 
-                            <input class="btn btn-success" type="submit" name="submit" value="Sumbit"></p>
+                            <input id = "submit"  type="submit" name="submit" value="Sumbit"></p>
 
                        </form>
 
@@ -1269,6 +1276,9 @@ $success = null;
             
         }
     </script>
+    <!-- Scroll to top script-->
+    <div id ="scrollToTopScript">
+    		</div>
 
 </body>
 
